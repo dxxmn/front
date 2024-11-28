@@ -4,11 +4,12 @@ import { FaRegMoon } from "react-icons/fa";
 import { LuSunMedium } from "react-icons/lu";
 import { ThemeContext } from "../../components/theme-provider";
 import { useNavigate } from "react-router-dom";
+import { Chat, useGetAllChatsQuery } from '../../app/services/allApi';
 
 export const Dashboard = () => {
+    const {data} = useGetAllChatsQuery()
     const { theme, toggleTheme } = useContext(ThemeContext)
     const navigate = useNavigate()
-    const projects = ['dd', 'ddd']
 
 const handleNewProject = () => {
     try{
@@ -45,9 +46,9 @@ const handleNewProject = () => {
             </Navbar>
             <div className='flex flex-row max-w-full mx-5 justify-center'>
                 <div className='flex flex-col max-w-full mx-5 basis-1/2'>
-                    {projects.map((a) =>
+                    {data.map((a) =>
                         <Button className='basis-1/2 mt-5 p-2' onClick={() => navigate('/project/:id/workflow')}>
-                            <p>{a}</p>
+                            <p>{a.chat_name}</p>
                         </Button>
                     )}
                 </div>

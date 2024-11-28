@@ -1,32 +1,89 @@
-import React, { useContext, useState } from 'react';
-import { ThemeContext } from "../theme-provider";
+import React, { useContext, useState } from "react"
+import { ThemeContext } from "../theme-provider"
 import {
     Button,
     Navbar,
     NavbarContent,
-    NavbarItem, Tab,
+    NavbarItem,
+    Tab,
     Tabs,
     Textarea,
-} from "@nextui-org/react";
-import { FaRegMoon } from "react-icons/fa";
-import { LuSunMedium } from "react-icons/lu";
-import { useNavigate } from "react-router-dom";
-import { setChatId } from '../../features/chatSlice';
-import { useCreateModelFromFileMutation } from '../../app/services/allApi';
+} from "@nextui-org/react"
+import { FaRegMoon } from "react-icons/fa"
+import { LuSunMedium } from "react-icons/lu"
+import { useNavigate } from "react-router-dom"
+import { setChatId } from "../../features/chatSlice"
+import { useCreateModelFromFileMutation, useCreateModelFromLinkMutation } from "../../app/services/allApi"
 
-export const Header:React.FC<any> = ({file,selectedType,input,fileName,url,answer,model}) => {
-    const navigate = useNavigate();
-    const [selected, setSelected] = useState('')
+export const Header: React.FC<any> = ({
+    file,
+    selectedType,
+    input,
+    fileName,
+    url,
+    answer,
+    model,
+}) => {
+    const navigate = useNavigate()
+    const [selected, setSelected] = useState("")
     const { theme, toggleTheme } = useContext(ThemeContext)
-    const projects = ['dd', 'ddd']
-    const [createModelFromFile] = useCreateModelFromFileMutation()
+    const projects = ["dd", "ddd"]
+    const [createModelFromFile] =
+        useCreateModelFromFileMutation()
+    const [createModelFromLink] =
+        useCreateModelFromLinkMutation()
+    const chatName = "1"
+    const modelName = "1"
+    const instruction = "1"
+    const embending = "1"
 
-    const onSubmit = async () =>{
-        const formData:FormData = new FormData();
-        formData.append('file', file); 
-        const res = await createModelFromFile({file:formData}).unwrap()
-        setChatId(res.chatId)
-        console.log(res.chatId)
+    const onSubmit = async (e: React.FormEvent) => {
+        if (selectedType == 'document') {
+            e.preventDefault()
+            if (!file) {
+                alert("Please select a file.")
+                return
+            }
+
+            try {
+                const response = await createModelFromFile({
+                    file,
+                    chat_name: chatName,
+                    model_name: modelName,
+                    instruction,
+                    embending,
+                }).unwrap()
+
+                console.log("Response:", response)
+                // Handle success (e.g., navigate to another page, display a message, etc.)
+            } catch (err) {
+                console.error("Failed to create model:", err)
+                // Handle error (e.g., display error message)
+            }
+        }
+        else {
+            e.preventDefault()
+            if (!file) {
+                alert("Please select a file.")
+                return
+            }
+
+            try {
+                const response = await createModelFromLink({
+                    url,
+                    chat_name: chatName,
+                    model_name: modelName,
+                    instruction,
+                    embending,
+                }).unwrap()
+
+                console.log("Response:", response)
+                // Handle success (e.g., navigate to another page, display a message, etc.)
+            } catch (err) {
+                console.error("Failed to create model:", err)
+                // Handle error (e.g., display error message)
+            }
+        }
     }
 
     return (

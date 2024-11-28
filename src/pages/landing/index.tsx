@@ -5,6 +5,7 @@ import {FaRegMoon} from "react-icons/fa";
 import {LuSunMedium} from "react-icons/lu";
 import {useNavigate} from "react-router-dom";
 import {ThemeContext} from "../../components/theme-provider";
+import { useGetAllChatsQuery } from '../../app/services/allApi';
 
 export const Landing = () => {
     const navigate = useNavigate()

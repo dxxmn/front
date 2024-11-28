@@ -2,6 +2,8 @@ import React from 'react';
 import {useForm} from "react-hook-form";
 import {Button,  Link} from "@nextui-org/react";
 import { Input } from '../components/input';
+import { useLoginMutation } from '../app/services/allApi';
+import { useNavigate } from 'react-router-dom';
 
 type Login = {
     email:string,
@@ -26,14 +28,14 @@ export const Login : React.FC<Props> = ({setSelected}) => {
         }
     })
 
+    const [login, { isLoading }] = useLoginMutation()
+    const navigate = useNavigate()
+
+
+
     const onSubmit = async (data: Login) => {
-        try {
-        
-
-        }
-        catch {
-
-        }
+          await login(data).unwrap()
+          navigate("/")
     }
 
     return (

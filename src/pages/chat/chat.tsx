@@ -4,7 +4,7 @@ import { FaRegMoon, FaRegUserCircle, FaRobot } from 'react-icons/fa';
 import { LuSunMedium } from 'react-icons/lu';
 import { ThemeContext } from '../../components/theme-provider';
 
-export const Chat = (color:string) => {
+export const Chat = () => {
     const { theme, toggleTheme } = useContext(ThemeContext)
     const messages = [{ ai: "asdasdsd", user: "asddfgdh" },
     { ai: "hryjhfjg", user: "qrewter" },
@@ -44,8 +44,19 @@ export const Chat = (color:string) => {
                 <div className="flex max-w-full mt-5">
                     <div className="w-full">
                         {messages.map((m, index) => (
-                            <div key={index} className="flex flex-col w-full mb-4">
-                                {/* Сообщение от Assistant */}
+                            <div key={index} className="flex flex-col w-full mt-10">
+                                
+                                <div className="flex justify-end w-full mb-6">
+                                    <Card className=" flex w-full max-w-2xl h-32">
+                                        <div className="flex items-center gap-2">
+                                            <FaRegUserCircle className="size-14 p-2" />
+                                            <p>You</p>
+                                        </div>
+                                        <CardBody className="flex-1 text-xl">
+                                            {m.user}
+                                        </CardBody>
+                                    </Card>
+                                </div>
                                 <div className="flex justify-start w-full">
                                     <Card className=" flex w-full max-w-2xl h-32">
                                         <div className="flex items-center gap-2">
@@ -54,18 +65,6 @@ export const Chat = (color:string) => {
                                         </div>
                                         <CardBody className="flex-1 text-xl">
                                             {m.ai}
-                                        </CardBody>
-                                    </Card>
-                                </div>
-                                {/* Сообщение от You */}
-                                <div className="flex justify-end w-full mt-2">
-                                    <Card className=" flex w-full max-w-2xl h-32">
-                                        <div className="flex items-center gap-2">
-                                            <FaRegUserCircle className="size-14 p-2" />
-                                            <p>You</p>
-                                        </div>
-                                        <CardBody className="flex-1 text-xl">
-                                            {m.user}
                                         </CardBody>
                                     </Card>
                                 </div>

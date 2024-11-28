@@ -11,7 +11,7 @@ interface InitialState {
 
 const initialState: InitialState = {
   user: null,
-  isAuthenticated: true,
+  isAuthenticated: false,
 }
 
 const slice = createSlice({
@@ -28,10 +28,6 @@ const slice = createSlice({
       .addMatcher(allApi.endpoints.login.matchFulfilled, (state, action) => {
         state.token = action.payload.token
         state.isAuthenticated = true
-      })
-      .addMatcher(allApi.endpoints.current.matchFulfilled, (state, action) => {
-        state.isAuthenticated = true
-        state.user = action.payload
       })
     }
 })

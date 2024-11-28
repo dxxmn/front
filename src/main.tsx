@@ -20,14 +20,17 @@ const router = createBrowserRouter([
         path: '/',
         element: <Landing/>
     },
+
     {
       path: '/chat',
       element: <Chat/>
-  },
+    },
+
     {
         path: 'dashboard',
         element: <Dashboard/>
     },
+    
     {
         path: 'project/:id/',
         element: <Layout/>,

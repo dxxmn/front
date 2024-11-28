@@ -8,7 +8,7 @@ type Props = {
     href: string
 }
 
-export const NavButton = ({
+export const NavButton:React.FC<Props> = ({
     children,
     icon,
     href

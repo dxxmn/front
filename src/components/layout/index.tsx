@@ -10,7 +10,10 @@ export const Layout = () => {
     const [url, setUrl] = useState('')
     const [answer, setAnswer] = useState('')
     const [model, setModel] = useState('llama')
-    const [chatId, setChatId] =useState('')
+    const [chatId, setChatId] = useState('')
+    const [chatName, setChatName] = useState('')
+    const [chats,setChats] = useState('')
+    
 
 
     return (
