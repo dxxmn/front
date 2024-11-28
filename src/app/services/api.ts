@@ -5,7 +5,6 @@ import {RootState} from "../store";
 const baseQuery = fetchBaseQuery({
     baseUrl: `${BASE_URL}/api`,
     prepareHeaders: headers => {
-        headers.set('Content-Type', 'application/json;charset=UTF-8')
         headers.set('Authorization','сюда токен')
     }
 })

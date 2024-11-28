@@ -11,6 +11,7 @@ import {Workflow} from "./pages/workflow";
 import {Landing} from "./pages/landing";
 import {Export} from "./pages/export";
 import {Dashboard} from "./pages/dashboard";
+import { Chat } from "./pages/chat/chat"
 
 const container = document.getElementById("root")
 
@@ -19,6 +20,10 @@ const router = createBrowserRouter([
         path: '/',
         element: <Landing/>
     },
+    {
+      path: '/chat',
+      element: <Chat/>
+  },
     {
         path: 'dashboard',
         element: <Dashboard/>

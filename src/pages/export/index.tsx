@@ -65,7 +65,7 @@ export const Export = () => {
                 <Card className='flex w-full'>
                     <CardBody>
                         <div >
-                            <iframe src='http://localhost:5173/' width={1000} height={650}></iframe>
+                            <iframe src='http://localhost:5173/chat' width={1000} height={650}></iframe>
                         </div>
                     </CardBody>
                 </Card>

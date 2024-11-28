@@ -1,7 +1,7 @@
 import React from 'react';
 import {useForm} from "react-hook-form";
-import {Input} from "../components/input";
-import {Button, Link} from "@nextui-org/react";
+import {Button,  Link} from "@nextui-org/react";
+import { Input } from '../components/input';
 
 type Login = {
     email:string,
