@@ -33,11 +33,12 @@ export const allApi = api.injectEndpoints({
         }),
       }),
 
-      getProjects: builder.query({
+      getProjects: builder.query<
+      {chatId:string;chatName:string;fileUrl:string;instructions:string;modelName:string;userId:string},
+      void>({
         query:(userData) => ({
-          url:'',
-          method:'',
-          body:userData
+          url:'/getallchats',
+          method:'GET',
         })
       }),
 
