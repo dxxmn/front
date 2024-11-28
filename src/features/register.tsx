@@ -2,6 +2,7 @@ import React from 'react';
 import {Input} from "../components/input";
 import {Button, Link} from "@nextui-org/react";
 import {useForm} from "react-hook-form";
+import { useRegisterMutation } from '../app/services/allApi';
 
 type Props = {
     setSelected: (value:string) => void
@@ -10,7 +11,6 @@ type Props = {
 type Register = {
     email: string,
     password:string,
-    name:string
 }
 
 export const Register : React.FC<Props> = ({setSelected}) => {
@@ -24,27 +24,18 @@ export const Register : React.FC<Props> = ({setSelected}) => {
         defaultValues: {
             email:'',
             password:'',
-            name:''
         }
     })
 
+    const [register] = useRegisterMutation()
+
     const onSubmit = async (data: Register) => {
-        try {
-
-        }
-        catch {
-
-        }
+        await register(data).unwrap()
+        setSelected("login")
     }
 
     return (
         <form className='flex flex-col gap-4' onSubmit={handleSubmit(onSubmit)}>
-            <Input
-                control={control}
-                name='name'
-                label='Имя'
-                type='text'
-                required='Обязательное поле'/>
             <Input
                 control={control}
                 name='email'

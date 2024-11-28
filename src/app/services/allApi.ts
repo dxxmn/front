@@ -9,18 +9,18 @@ export const allApi = api.injectEndpoints({
         { email: string; password: string }
       >({
         query: (userData) => ({
-          url: "/login",
+          url: "/auth/signin",
           method: "POST",
           body: userData,
         }),
       }),
 
       register: builder.mutation<
-        { email: string; password: string; name: string },
-        { email: string; password: string; name: string }
+        { email: string; password: string; },
+        { email: string; password: string; }
       >({
         query: (userData) => ({
-          url: "/register",
+          url: "/registration",
           method: "POST",
           body: userData,
         }),
@@ -57,5 +57,6 @@ export const allApi = api.injectEndpoints({
 export const {
     useLoginMutation,
     useRegisterMutation,
-    useCreateModelFromFileMutation
+    useCreateModelFromFileMutation,
+    useLazyCurrentQuery
 } =allApi
