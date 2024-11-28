@@ -1,1 +1,1 @@
-export const BASE_URL = process.env.NODE_ENV === 'prod' ? 'none' : 'http://localhost:5173'
+export const BASE_URL = 'http://localhost:8007'

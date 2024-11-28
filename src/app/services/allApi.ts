@@ -44,11 +44,6 @@ export interface Chat {
 }
 
 
-
-export interface GetHistoryRequest {
-  chat_id: number;
-}
-
 export interface Message {
   message_id: number;
   chat_id: number;
@@ -65,10 +60,10 @@ export interface GetHistoryResponse {
 export const allApi = api.injectEndpoints({
   endpoints: builder => ({
 
-    getHistory: builder.mutation<GetHistoryResponse, GetHistoryRequest>({
+    getHistory: builder.mutation<GetHistoryResponse, {chatId: number}>({
       query: (body) => ({
         url: '/api/getHistory', // Замените на реальный путь вашего эндпоинта
-        method: 'POST',
+        method: 'GET',
         body:body
       }),
     }),
@@ -84,9 +79,6 @@ export const allApi = api.injectEndpoints({
       query: (body) => ({
         url: '/api/setMessage', // Замените на реальный путь вашего эндпоинта
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
         body,
       }),
     }),
@@ -132,23 +124,6 @@ export const allApi = api.injectEndpoints({
       }),
     }),
 
-    getProjects: builder.query
-      <{
-        chatId: string
-        chatName: string
-        fileUrl: string
-        instructions: string
-        modelName: string
-        userId: string
-      }, void>
-      ({
-        query: userData => ({
-          url: "/getallchats",
-          method: "GET",
-        }),
-      }),
-
-
   }),
 })
 
@@ -158,7 +133,7 @@ export const {
   useLoginMutation,
   useRegisterMutation,
   useCreateModelFromFileMutation,
-  useGetProjectsQuery,
   useCreateModelFromLinkMutation,
-  useLazyGetAllChatsQuery
+  useLazyGetAllChatsQuery,
+  useGetHistoryMutation,
 } = allApi
