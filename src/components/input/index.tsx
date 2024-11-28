@@ -9,7 +9,7 @@ type Props = {
     type?:string,
     control: Control<any>,
     required?:string,
-    endContent: JSX.Element
+    endContent?: JSX.Element
 }
 
 export const Input: React.FC<Props> = ({

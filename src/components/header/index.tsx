@@ -22,7 +22,9 @@ export const Header:React.FC<any> = ({file,selectedType,input,fileName,url,answe
     const [createModelFromFile] = useCreateModelFromFileMutation()
 
     const onSubmit = async () =>{
-        const res = await createModelFromFile(file).unwrap()
+        const formData:FormData = new FormData();
+        formData.append('file', file); 
+        const res = await createModelFromFile({file:formData}).unwrap()
         setChatId(res.chatId)
         console.log(res.chatId)
     }

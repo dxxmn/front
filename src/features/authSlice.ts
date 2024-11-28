@@ -11,7 +11,7 @@ interface InitialState {
 
 const initialState: InitialState = {
   user: null,
-  isAuthenticated: false,
+  isAuthenticated: true,
 }
 
 const slice = createSlice({

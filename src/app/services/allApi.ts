@@ -41,7 +41,7 @@ export const allApi = api.injectEndpoints({
         })
       }),
 
-      createModelFromFile: builder.mutation<{chatId:string},{file:File}>({
+      createModelFromFile: builder.mutation<{chatId:string},{file:FormData}>({
         query:(userData) => ({
           url:'/createModelFromFile',
           method:'GET',
