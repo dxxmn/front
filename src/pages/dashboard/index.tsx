@@ -46,11 +46,12 @@ const handleNewProject = () => {
             </Navbar>
             <div className='flex flex-row max-w-full mx-5 justify-center'>
                 <div className='flex flex-col max-w-full mx-5 basis-1/2'>
-                    {data.map((a) =>
+                    {data && data?.length>0 ? data.map((a) =>
                         <Button className='basis-1/2 mt-5 p-2' onClick={() => navigate('/project/:id/workflow')}>
                             <p>{a.chat_name}</p>
                         </Button>
-                    )}
+                    
+                    ):null}
                 </div>
             </div>
         </div>
